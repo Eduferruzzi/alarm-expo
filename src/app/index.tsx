@@ -1,6 +1,7 @@
 import * as Notifications from "expo-notifications"
 import React, { useEffect } from "react"
 import { Alert, Button, Platform, StyleSheet, Text, View } from "react-native"
+import TimePicker from "@/components/TimePicker"
 
 // Como a notificação se comporta
 Notifications.setNotificationHandler({
@@ -37,34 +38,36 @@ export default function App(): React.JSX.Element {
     requestPermissions()
   }, [])
 
-  async function scheduleAlarm(secondsFromNow: number): Promise<void> {
-    // Agenda para daqui X segundos
-    await Notifications.scheduleNotificationAsync({
-      content: {
-        title: "Teste",
-        body: "Remédio!!!",
-        sound: true,
-      },
-      trigger: {
-        type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
-        seconds: secondsFromNow,
-        channelId: "alarm-channel", // Canal do android
-      },
-    })
+  // async function scheduleAlarm(secondsFromNow: number): Promise<void> {
+  //   // Agenda para daqui X segundos
+  //   await Notifications.scheduleNotificationAsync({
+  //     content: {
+  //       title: "Teste",
+  //       body: "Remédio!!!",
+  //       sound: true,
+  //     },
+  //     trigger: {
+  //       type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
+  //       seconds: secondsFromNow,
+  //       channelId: "alarm-channel", // Canal do android
+  //     },
+  //   })
 
-    Alert.alert(
-      "Alarme configurado!",
-      `O alarme vai tocar em ${secondsFromNow} segundos`,
-    )
-  }
+  //   Alert.alert(
+  //     "Alarme configurado!",
+  //     `O alarme vai tocar em ${secondsFromNow} segundos`,
+  //   )
+  // }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Meu Alarme Simples</Text>
+      {/* <Text style={styles.title}>Meu Alarme Simples</Text>
       <Button
         title="Agendar Alarme (em 60 segundos)"
         onPress={() => scheduleAlarm(60)}
-      />
+      /> */}
+      <Text style={styles.title}>TimePicker Simples</Text>
+      <TimePicker/>
     </View>
   )
 }
